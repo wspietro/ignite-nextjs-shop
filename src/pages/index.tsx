@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { GetServerSideProps } from 'next'
+import { GetStaticProps } from 'next'
 import { stripe } from '../lib/stripe';
 
 import { HomeContainer, Product } from "../styles/pages/home";
@@ -46,9 +46,10 @@ export default function Home({ products }: HomeProps) {
 // Solução para chamada API em SSR;
 // Se desabilitarmos o JS (forma que o SEO é lido), nossa página estará com o conteúdo;
 // Código não fica visível ao usuário;
-// Págin a só é carregada após a chamada.
+// Págin a só é carregada após a chamada;
+// SSG serverSideProps vs staticProps. Não temos acesso ao contexto da requisição (req, res, headers, cookies).
 
-export const getServerSideProps: GetServerSideProps = async () => {
+export const getStaticProps: GetStaticProps = async () => {
   const response = await stripe.products.list({
     expand: ['data.default_price']
   });
@@ -68,7 +69,8 @@ export const getServerSideProps: GetServerSideProps = async () => {
   return {
     props: {
       products,
-    }
+    },
+    revalidate: 60 * 60 * 2, // 2 hours
   };
 };
 
