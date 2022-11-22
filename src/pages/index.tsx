@@ -55,12 +55,12 @@ export default function Home({ products }: HomeProps) {
 // SSG serverSideProps vs staticProps. Não temos acesso ao contexto da requisição (req, res, headers, cookies).
 
 export const getStaticProps: GetStaticProps = async () => {
-  const response = await stripe.products.list({
+  const productListResponse = await stripe.products.list({
     expand: ['data.default_price']
   });
 
 
-  const products = response.data.map(product => {
+  const products = productListResponse.data.map(product => {
     const price = product.default_price as Stripe.Price
 
     return {
