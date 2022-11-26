@@ -50,6 +50,7 @@ export const ImageContainer = styled('div', {
   display: "flex",
   flexDirection: "column",
   alignItems: "center",
+  justifyContent: "center",
 
   img: {
     objectFit: 'cover'
