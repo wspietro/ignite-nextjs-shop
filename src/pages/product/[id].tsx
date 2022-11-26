@@ -1,6 +1,7 @@
 import axios from 'axios';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Image from 'next/image';
+import { useState } from 'react';
 import Stripe from 'stripe';
 import { stripe } from '../../lib/stripe';
 
@@ -19,9 +20,13 @@ interface ProductProps {
 }
 
 export default function Product({ product }: ProductProps) {
+  const [isCreatingCheckoutSession, setIsCreatingCheckoutSession] = useState(false);
+
   // Try catch é aconselhável quando lídamos com API externas + ação do usuário
   async function handleBuyProduct() {
     try {
+      setIsCreatingCheckoutSession(true);
+
       // api roda no mesmo endereco que o front, não é necessário baseUrl
       const response = await axios.post('/api/checkoutSession', {
         priceId: product.defaultPriceId
@@ -34,6 +39,9 @@ export default function Product({ product }: ProductProps) {
       window.location.href = checkoutUrl;
     } catch (err) {
       // Conectar com uma ferramenta de observabilidade (Datadog / Sentry)
+
+      setIsCreatingCheckoutSession(false);
+      alert('Falha ao redirecionar ao checkout!')
     }
   }
 
@@ -51,7 +59,7 @@ export default function Product({ product }: ProductProps) {
           {product.description}
         </p>
 
-        <button onClick={handleBuyProduct}>
+        <button disabled={isCreatingCheckoutSession} onClick={handleBuyProduct}>
           Comprar agora
         </button>
       </ProductDetails>
