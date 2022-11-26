@@ -1,6 +1,6 @@
+import axios from 'axios';
 import { GetStaticPaths, GetStaticProps } from 'next';
 import Image from 'next/image';
-import { useRouter } from 'next/router';
 import Stripe from 'stripe';
 import { stripe } from '../../lib/stripe';
 
@@ -19,9 +19,22 @@ interface ProductProps {
 }
 
 export default function Product({ product }: ProductProps) {
-  function handleBuyProduct() {
-    console.log(product.defaultPriceId);
+  // Try catch é aconselhável quando lídamos com API externas + ação do usuário
+  async function handleBuyProduct() {
+    try {
+      // api roda no mesmo endereco que o front, não é necessário baseUrl
+      const response = await axios.post('/api/checkoutSession', {
+        priceId: product.defaultPriceId
+      })
 
+      const { checkoutUrl } = response.data;
+
+      // Redirecionamento externo;
+      // Se fossse interno, usarioamos useRouter() + router.push('/checkout')
+      window.location.href = checkoutUrl;
+    } catch (err) {
+      // Conectar com uma ferramenta de observabilidade (Datadog / Sentry)
+    }
   }
 
   return (
