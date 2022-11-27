@@ -9,6 +9,8 @@ import 'keen-slider/keen-slider.min.css'
 import Stripe from "stripe";
 import { formatPrice } from "../utils/formatPrice";
 
+import Head from 'next/head'
+
 interface HomeProps {
   products: {
     id: string;
@@ -27,25 +29,33 @@ export default function Home({ products }: HomeProps) {
   });
 
   return (
-    <HomeContainer ref={sliderRef} className="keen-slider">
-      {products.map(product => {
-        return (
-          <ProductNextLink
-            className="keen-slider__slide"
-            href={`/product/${product.id}`}
-            key={product.id}
-            prefetch={false}
-          >
-            <Image src={product.imageUrl} width={520} height={480} alt="" />
+    <>
+      <Head>
+        <title>Home | Ignite Shop</title>
+      </Head>
 
-            <footer>
-              <strong>{product.name}</strong>
-              <span>{product.price}</span>
-            </footer>
-          </ProductNextLink>
-        )
-      })}
-    </HomeContainer>
+
+      <HomeContainer ref={sliderRef} className="keen-slider">
+        {products.map(product => {
+          return (
+            <ProductNextLink
+              className="keen-slider__slide"
+              href={`/product/${product.id}`}
+              key={product.id}
+              prefetch={false}
+            >
+              <Image src={product.imageUrl} width={520} height={480} alt="" />
+
+              <footer>
+                <strong>{product.name}</strong>
+                <span>{product.price}</span>
+              </footer>
+            </ProductNextLink>
+          )
+        })}
+      </HomeContainer>
+    </>
+
   )
 }
 
