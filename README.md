@@ -16,8 +16,8 @@
 <br>
 
 <p align="center">
-  <img alt="NLW Heat" src="./src/assets/mobile.png" width="48%">
-  <img alt="NLW Heat" src="./src/assets/desktop.png" width="48%">
+  <img alt="NLW Heat" src="./src/assets/compra.gif" width="48%">
+  <img alt="NLW Heat" src="./src/assets/sucesso-print.png" width="48%">
 </p>
 
 <br>
@@ -39,20 +39,23 @@ Para a construção do projeto, foram utilizadas as seguintes tecnologias:
 
 ## ✨ Sobre o projeto
 
-Desafio proposto para reforçar os conceitos mais importantes do ReactJs. Foi proposto uma aplicação de controle de tarefas, no estilo to-do list, com as seguintes funcionalidades:
+Esse projeto foi desenvolvido durante o módulo 4: Fundamentos do NextJs no bootcamp <a href="https://lp.rocketseat.com.br/ignite?&&" style="color: rgba(68, 131, 97, 1); text-decoration: underline;">Ignite</a> (Rocketseat) com o objetivo de criar um projeto completo com o framework <strong>NextJs</strong>, passando por conceitos de Single Page Aplication (SPA), server-side rendering (SSR) e static-site generation (SSG).
 
-- Adicionar tarefa;
-- Marcar e desmarcar tarefa como concluída;
-- Remover tarefa da lista;
-- Mostrar progreço de conclusão de tarefa.
+Foram praticados na aplicação os seguinte conceitos e métodos:
 
-Foram relembrados na aplicação os seguintes conceitos: Estados, Contextos, Tipagem, Imutabilidade, Listas e chaves no React...
+- Roteamento baseado em arquivos físicos;
+- Dynamic routes;
+- Otimização de imagens utilizando o componente Next `<Image />`;
+- SSR e SSG utilizando `getServerSideProps()` e `getStatitProps()`;
+- Client-side navigation utilizando o componente Next `<Link />`;
+- Informações estáticas utilizando `getStaticPaths()`;
+- API Routes e Stripe checkout Session.
 
 ### 💄 Layout
 
-Para essa aplicação a equipe da RocketSeat forneceu um layout para ser seguido.
+O layout da aplicação foi desenvolvido e forneciso pela equipe da Rocketseat.
 
-<a href="https://www.figma.com/file/myovJeEBMZdHlX2KEJaVgI/ToDo-List-(Copy)?node-id=12%3A106" style="color: rgba(68, 131, 97, 1); text-decoration: underline;">Clique aqui</a> e acesse o conteúdo!
+<a href="https://www.figma.com/file/OIJJEW24DFiJO6XLqHw2DM/Ignite-Shop/duplicate" style="color: rgba(68, 131, 97, 1); text-decoration: underline;">Clique aqui</a> e acesse o conteúdo!
 
 <br>
 
